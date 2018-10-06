@@ -21,4 +21,8 @@ body {
     opacity: 0.7;
     font-weight: bold;
 }
+button {
+    margin:5px;
+   
+}
 
