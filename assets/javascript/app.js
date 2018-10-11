@@ -38,20 +38,20 @@ var turn = 1;
 // insert the photos for the chosen weapons for RPS
 var setWeapon = function () 
 {
-	var rockPNG = '<img title="Rock" src="assets/images/rock.jpg"/>';
-	var paperPNG = '<img title="Paper" src="assets/images/paper.jpg"/>';
-	var scissorsPNG = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
+	var rock = '<img title="Rock" src="assets/images/rock.jpg"/>';
+	var paper = '<img title="Paper" src="assets/images/paper.jpg"/>';
+	var scissors = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
 
     if (localUser.id === 1) 
     {
-		$('.rock1').html(rockPNG);
-		$('.paper1').html(paperPNG);
-		$('.scissors1').html(scissorsPNG);
+		$('.rock1').html(rock);
+		$('.paper1').html(paper);
+		$('.scissors1').html(scissors);
 	}
 	else {
-		$('.rock2').html(rockPNG);
-		$('.paper2').html(paperPNG);
-		$('.scissors2').html(scissorsPNG);
+		$('.rock2').html(rock);
+		$('.paper2').html(paper);
+		$('.scissors2').html(scissors);
 	}
 }
 
@@ -69,7 +69,7 @@ var createNewUser = function ()
 				loss: 0
 			});
 
-			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player One</p>');
+			$('.playerInfo').append('<p>Hi ' + newPlayer + '! You\'re Player One</p>');
 			
 			localUser.id = 1;
 			localUser.name = newPlayer;
@@ -77,14 +77,14 @@ var createNewUser = function ()
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
-        else if ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
-        {
+        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
+		{
 			playerTwoRef.set({
 				name: newPlayer,
 				win: 0,
 				loss: 0
 			});
-			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
+			$('.playerInfo').appendChild('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
 
 			localUser.id = 2;
 			localUser.name = newPlayer;
