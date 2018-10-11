@@ -77,7 +77,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
-        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
+        if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
 		{
 			playerTwoRef.set({
 				name: newPlayer,
@@ -92,7 +92,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerTwoRef.onDisconnect().remove();
 		}
-        else if (existingPlayers >= 2) 
+        if (existingPlayers >= 2) 
         {
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '</p>');
 			$('.notification').html('There are already two players playing!');
@@ -227,7 +227,7 @@ playerTwoRef.on('child_removed', function(snapshot)
 // function to store chosen weapon rock, paper, or scissors from players one and two.
 var chosenWeapon = function () 
 {
-	var chosenWeapon = $('.weapon').data().weapon;
+	var chosenWeapon = $(this).data().weapon;
 
 	if (existingPlayers === 2) {
 		if ((localUser.id === 1) && (turn === 1)) {
@@ -359,17 +359,17 @@ var newRound = function ()
 // A function to send chats back and forth between players
 var sendMessage = function()
 {
-	var text = $('.messageBox').val();
+	var text = $('.messageBox').val().trim();
 	var message = localUser.name + ': ' + text;
 
     if (localUser.id === 1) 
     {
-		chatRef.push('<span class="green">' + message + '</span>');
+		chatRef.push(message);
 	}
 	
     if (localUser.id === 2) 
     {
-		chatRef.push('<span class="blue">' + message + '</span>');
+		chatRef.push(message);
 	}
 
 	$('.messageBox').val('');
@@ -378,7 +378,7 @@ var sendMessage = function()
 // show message from the firbase database
 chatRef.on('child_added', function(snapshot) 
 {
-	var currentMessage = snapshot.val().trim();
+	var currentMessage = snapshot.val();
 	
 	$('.chatArea').html('<p>' + currentMessage + '</p>');
 });
