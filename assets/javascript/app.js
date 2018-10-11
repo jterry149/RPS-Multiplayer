@@ -69,7 +69,7 @@ var createNewUser = function ()
 				loss: 0
 			});
 
-			$('.playerInfo').append('<p>Hi ' + newPlayer + '! You\'re Player One</p>');
+			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player One</p>');
 			
 			localUser.id = 1;
 			localUser.name = newPlayer;
@@ -84,7 +84,7 @@ var createNewUser = function ()
 				win: 0,
 				loss: 0
 			});
-			$('.playerInfo').appendChild('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
+			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
 
 			localUser.id = 2;
 			localUser.name = newPlayer;
@@ -138,7 +138,6 @@ playerRef.on('child_removed', function(snapshot)
 	chatRef.remove();
 	turnRef.remove();
 
-	$('.box').css('border-color', '#cccccc');
 	$('.notification').html('');
 });
 
