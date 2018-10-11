@@ -145,11 +145,9 @@ turnRef.on('value', function(snapshot)
 {
 	var turns = snapshot.val();
 
-	// display different colors for the boxes around players 
+	// display notifications
     if (turns === 1) 
     {
-		$('.playerOne').css('border-color', 'black');
-		$('.playerTwo').css('border-color', 'teal');
 
         if (localUser.id === 1) 
         {
@@ -163,9 +161,6 @@ turnRef.on('value', function(snapshot)
 
     if (turns === 2) 
     {
-		$('.playerTwo').css('border-color', 'black');
-		$('.playerOne').css('border-color', 'teal');
-
         if (localUser.id === 2) 
         {
 			$('.notification').html('It\'s your turn');
@@ -232,7 +227,7 @@ playerTwoRef.on('child_removed', function(snapshot)
 // function to store chosen weapon rock, paper, or scissors from players one and two.
 var chosenWeapon = function () 
 {
-	var chosenWeapon = $(this).data().weapon;
+	var chosenWeapon = $('.weapon').data().weapon;
 
 	if (existingPlayers === 2) {
 		if ((localUser.id === 1) && (turn === 1)) {
@@ -383,9 +378,9 @@ var sendMessage = function()
 // show message from the firbase database
 chatRef.on('child_added', function(snapshot) 
 {
-	var currentMessage = snapshot.val();
+	var currentMessage = snapshot.val().trim();
 	
-	$('.chatArea').append('<p>' + currentMessage + '</p>');
+	$('.chatArea').html('<p>' + currentMessage + '</p>');
 });
 
 // clear the chat after the players disconnected
