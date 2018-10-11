@@ -4,7 +4,7 @@ var config = {
     authDomain: "rps-multiplayer-e7c2f.firebaseapp.com",
     databaseURL: "https://rps-multiplayer-e7c2f.firebaseio.com",
     projectId: "rps-multiplayer-e7c2f",
-    storageBucket: "",
+    storageBucket: "rps-multiplayer-e7c2f.appspot.com",
     messagingSenderId: "800713197043"
 };
 
@@ -36,11 +36,11 @@ var turn = 1;
 //============ FUNCTIONS ================//
 
 // insert the photos for the chosen weapons for RPS
-var setRPS = function () 
+var setWeapon = function () 
 {
-	var rockPNG = '<img title="Rock" src="assets/images/rock.png"/>';
-	var paperPNG = '<img title="Paper" src="assets/images/paper.png"/>';
-	var scissorsPNG = '<img title="Scissors" src="assets/images/scissors.png"/>';
+	var rockPNG = '<img title="Rock" src="assets/images/rock.jpg"/>';
+	var paperPNG = '<img title="Paper" src="assets/images/paper.jpg"/>';
+	var scissorsPNG = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
 
     if (localUser.id === 1) 
     {
@@ -58,7 +58,7 @@ var setRPS = function ()
 // create new players and attach there information into the respective player attributes
 var createNewUser = function () 
 {
-    var newPlayer = $('#newPlayer').val().trim();
+    var newPlayer = $('.newPlayer').val().trim();
 
     if (newPlayer) 
     {
@@ -74,7 +74,7 @@ var createNewUser = function ()
 			localUser.id = 1;
 			localUser.name = newPlayer;
 
-			setRPS();
+			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
         else if ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
@@ -89,7 +89,7 @@ var createNewUser = function ()
 			localUser.id = 2;
 			localUser.name = newPlayer;
 
-			setRPS();
+			setWeapon();
 			playerTwoRef.onDisconnect().remove();
 		}
         else if (existingPlayers >= 2) 
@@ -149,8 +149,8 @@ turnRef.on('value', function(snapshot)
 	// display different colors for the boxes around players 
     if (turns === 1) 
     {
-		$('#playerOne').css('border-color', 'black');
-		$('#playerTwo').css('border-color', 'teal');
+		$('.playerOne').css('border-color', 'black');
+		$('.playerTwo').css('border-color', 'teal');
 
         if (localUser.id === 1) 
         {
@@ -164,8 +164,8 @@ turnRef.on('value', function(snapshot)
 
     if (turns === 2) 
     {
-		$('#playerTwo').css('border-color', 'black');
-		$('#playerOne').css('border-color', 'teal');
+		$('.playerTwo').css('border-color', 'black');
+		$('.playerOne').css('border-color', 'teal');
 
         if (localUser.id === 2) 
         {
@@ -179,8 +179,8 @@ turnRef.on('value', function(snapshot)
     if (turns === 3) 
     {
 		// show the results and choices of the player
-		$('#oneChoice').html('<h1>' + playerOneChoice + '</h1>');
-		$('#twoChoice').html('<h1>' + playerTwoChoice + '</h1>');
+		$('.oneChoice').html('<h1>' + playerOneChoice + '</h1>');
+		$('.twoChoice').html('<h1>' + playerTwoChoice + '</h1>');
 	}
 });
 
@@ -194,8 +194,8 @@ playerOneRef.on('value', function(snapshot)
 	playerOneWinName = name;
 
 	if (name !== null) {
-		$('#playerOneName').html('<h3>' + snapshot.child('name').val() + '</h3>');
-		$('#playerOneStats').html('Wins: ' + win + ' Losses: ' + loss);
+		$('.playerOneName').html('<h3>' + snapshot.child('name').val() + '</h3>');
+		$('.playerOneStats').html('Wins: ' + win + ' Losses: ' + loss);
 	}
 });
 
@@ -211,23 +211,23 @@ playerTwoRef.on('value', function(snapshot)
 
     if (name !== null) 
     {
-		$('#playerTwoName').html('<h3>' + snapshot.child('name').val() + '</h3>');
-		$('#playerTwoStats').html('Wins: ' + win + ' Losses: ' + loss);
+		$('.playerTwoName').html('<h3>' + snapshot.child('name').val() + '</h3>');
+		$('.playerTwoStats').html('Wins: ' + win + ' Losses: ' + loss);
 	}
 });
 
 // clear player one reference when disconnected
 playerOneRef.on('child_removed', function(snapshot) 
 {
-	$('#playerOneName').html('Waiting for Player 1');
-	$('#playerOneStats').html('');
+	$('.playerOneName').html('Waiting for Player 1');
+	$('.playerOneStats').html('');
 });
 
 // clear player two reference when disconnected
 playerTwoRef.on('child_removed', function(snapshot) 
 {
-	$('#playerTwoName').html('Waiting for Player 2');
-	$('#playerTwoStats').html('');
+	$('.playerTwoName').html('Waiting for Player 2');
+	$('.playerTwoStats').html('');
 });
 
 // function to store chosen weapon rock, paper, or scissors from players one and two.
@@ -239,15 +239,15 @@ var chosenWeapon = function ()
 		if ((localUser.id === 1) && (turn === 1)) {
 			playerOneChoiceRef.set(chosenWeapon);
 
-			$('#playerOneChoices').hide();
-			$('#oneChoice').html('<h1>' + chosenWeapon + '</h1>');
+			$('.playerOneChoices').hide();
+			$('.oneChoice').html('<h1>' + chosenWeapon + '</h1>');
 		}
         else if ((localUser.id === 2) && (turn === 2)) 
         {
 			playerTwoChoiceRef.set(chosenWeapon);
 
-			$('#playerTwoChoices').hide();
-			$('#twoChoice').html('<h1>' + chosenWeapon + '</h1>');
+			$('.playerTwoChoices').hide();
+			$('.twoChoice').html('<h1>' + chosenWeapon + '</h1>');
 		}
         else 
         {
@@ -296,7 +296,7 @@ var compareChoice = function ()
 
         if (playerOneChoice === playerTwoChoice) 
         {
-			$('#results').html('<h1>It\'s a tie!</h1>');
+			$('.results').html('<h1>It\'s a tie!</h1>');
 
 			turn = 3;
 
@@ -304,7 +304,8 @@ var compareChoice = function ()
 		}
         else if (((playerOneChoice === 'Rock') && (playerTwoChoice === 'Scissors')) || ((playerOneChoice === 'Paper') && (playerTwoChoice === 'Rock')) || ((playerOneChoice === 'Scissors') && (playerTwoChoice === 'Paper'))) 
         {
-			$('#results').html('<h1>' + playerOneWinName + ' wins!</h1>');
+			// Display results
+			$('.results').html('<h1>' + playerOneWinName + ' wins!</h1>');
 			
 			score1++;
 
@@ -317,7 +318,8 @@ var compareChoice = function ()
 		}
         else if (((playerTwoChoice === 'Rock') && (playerOneChoice === 'Scissors')) || ((playerTwoChoice === 'Paper') && (playerOneChoice === 'Rock')) || ((playerTwoChoice === 'Scissors') && (playerOneChoice === 'Paper'))) 
         {
-			$('#results').html('<h1>' + playerTwoWinName + ' wins!</h1>');
+			// Dislay result
+			$('.results').html('<h1>' + playerTwoWinName + ' wins!</h1>');
 
 			score2++;
 
@@ -340,7 +342,7 @@ var newRound = function ()
 	// clear player choices
 	playerOneChoice = '';
 	playerTwoChoice = '';
-	$('#results').html('');
+	$('.results').html('');
 	
 	// reset the turn to start game over
 	turn = 1;
@@ -349,21 +351,21 @@ var newRound = function ()
 	// show the players options again for both players
     if (localUser.id === 1) 
     {
-		$('#playerOneChoices').show();
+		$('.playerOneChoices').show();
 	}
 	else {
-		$('#playerTwoChoices').show();
+		$('.playerTwoChoices').show();
 	}
 
 	// clear the weapons for each player
-	$('#oneChoice').html('');
-	$('#twoChoice').html('');
+	$('.oneChoice').html('');
+	$('.twoChoice').html('');
 }
 
 // A function to send chats back and forth between players
 var sendMessage = function()
 {
-	var text = $('#messageBox').val();
+	var text = $('.messageBox').val();
 	var message = localUser.name + ': ' + text;
 
     if (localUser.id === 1) 
@@ -376,7 +378,7 @@ var sendMessage = function()
 		chatRef.push('<span class="blue">' + message + '</span>');
 	}
 
-	$('#messageBox').val('');
+	$('.messageBox').val('');
 }
 
 // show message from the firbase database
@@ -384,17 +386,16 @@ chatRef.on('child_added', function(snapshot)
 {
 	var currentMessage = snapshot.val();
 	
-	$('#chatArea').append('<p>' + currentMessage + '</p>');
+	$('.chatArea').append('<p>' + currentMessage + '</p>');
 });
 
 // clear the chat after the players disconnected
 chatRef.on('child_removed', function() 
 {
-	$('#chatArea').html('');
+	$('.chatArea').html('');
 });
 
-// Operations for the game play
-
+// Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
 $('#startButton').on('click', createNewUser);
 $('#chatButton').on('click', sendMessage);

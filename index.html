@@ -27,7 +27,7 @@
         <div class="row justify-content-center playerInfo">
             <div class="col-md-4">
                 <div class="form-block">
-                    <input id="newPlayer" type="text" class="form-control mr-sm-2" placeholder="Type your name here">
+                    <input class="newPlayer" type="text" class="form-control mr-sm-2" placeholder="Type your name here">
                     <button id="startButton" type="submit" class="btn btn-success">Start</button>
                 </div>
 		        <div class="row justify-content-center">
@@ -38,42 +38,47 @@
     <!--========== Start of Player Area =========-->
         <div class="row justify-content-center" id="playerArea">
         <!--========= Player One Area ===========-->
-		    <div class="col-md-3" id="playerOne">
-			    <div id="playerOneName"><h4>Waiting for Player 1</h4></div>
-			    <div id="playerOneChoices">
-                    <div class="weapon rock1" data-tool="Rock"></div>
-					<div class="weapon paper1" data-tool="Paper"></div>
-					<div class="weapon scissors1" data-tool="Scissors"></div>
+		    <div class="box col-md-3 playerOne">
+			    <div class="playerOneName"><h4>Waiting for Player 1</h4></div>
+			    <div class="playerOneChoices">
+                    <div class="weaponRPS">
+                        <div class="weapon rock1" data-tool="Rock"></div>
+					    <div class="weapon paper1" data-tool="Paper"></div>
+					    <div class="weapon scissors1" data-tool="Scissors"></div>
+                    </div>
                 </div>
-                <div id="OneChoice"></div>
-			    <div id="playerOneStats"></div>
+                <div class="OneChoice"></div>
+			    <div class="playerOneStats"></div>
             </div>
     <!--========== Game Results Area ==========-->
-            <div class="col-md-3" id="resultsArea">
+            <div class="col-md-3 resultsArea">
     <!--=========== Results Area ==============-->
-                <div id="results"></div>
+                <div class="results"></div>
     <!--=========== Chat Area =================-->
-                    <div id="chatArea"><h4>Chat Area</h4></div>
-                        <form id="messageBar">
-                            <input id="messageBox" type="text">
+                    <div class="chatArea">Chat Area</div>
+                        <form class="messageBar">
+                            <input class="messageBox" type="text">
                             <button id="chatButton" type="submit" class="btn btn-primary">Chat</button>
                         </form>      
                 </div>
     <!--========== Player Two Area ==========-->
-		    <div class="col-md-3"id="playerTwo">
-			    <div id="playerTwoName"><h4>Waiting for Player 2</h4></div>
-			    <div id="playerTwoChoices">
-                    <div class="weapon rock2" data-tool="Rock"></div>
-					<div class="weapon paper2" data-tool="Paper"></div>
-					<div class="weapon scissors2" data-tool="Scissors"></div>
+		    <div class="box col-md-3 playerTwo">
+			    <div class="playerTwoName"><h4>Waiting for Player 2</h4></div>
+			    <div class="playerTwoChoices">
+                    <div class="weaponRPS">
+                        <div class="weapon rock2" data-tool="Rock"></div>
+					    <div class="weapon paper2" data-tool="Paper"></div>
+                        <div class="weapon scissors2" data-tool="Scissors"></div>
+                    </div>
                 </div>
-                <div id="twoChoice"></div>
-			    <div id="playerTwoStats"></div>
+                <div class="twoChoice"></div>
+			    <div class="playerTwoStats"></div>
             </div>
         </div>
 	</div>
     <!--==================== Jquery Script Link ====================-->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
     <!--==================== Javascript Script Link ================-->
     <script src="assets/javascript/app.js"></script>
 </body>
