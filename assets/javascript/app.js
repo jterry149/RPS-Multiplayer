@@ -58,7 +58,7 @@ var setWeapon = function ()
 // create new players and attach there information into the respective player attributes
 var createNewUser = function () 
 {
-    var newPlayer = $('.newPlayer').val();
+    var newPlayer = $('.newPlayer').val().trim();
 
     if (newPlayer) 
     {
