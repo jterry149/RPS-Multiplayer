@@ -390,6 +390,14 @@ chatRef.on('child_removed', function()
 });
 
 // Operations for the game play to start the buttons and call the respective methods
-$('.weapon').on('click', chosenWeapon);
-$('#startButton').on('click', createNewUser);
-$('#chatButton').on('click', sendMessage);
+$('.weapon').on('click', function(){
+	chosenWeapon();
+});
+
+$('#startButton').on('click', function(){
+	createNewUser();
+});
+
+$('#chatButton').on('click', function(){
+	sendMessage();
+});
