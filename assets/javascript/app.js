@@ -1,3 +1,4 @@
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCOfFPjQyDBs4F3rpyaLoX2W6TzbWa_7qU",
@@ -62,7 +63,8 @@ var createNewUser = function ()
 
     if (newPlayer) 
     {
-		if ((existingPlayers === 0) || ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('2')))) {
+		if ((existingPlayers === 0) || ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('2')))) 
+		{
 			playerOneRef.set({
 				name: newPlayer,
 				win: 0,
@@ -372,7 +374,7 @@ var sendMessage = function()
 		chatRef.push(message);
 	}
 
-	$('.messageBox').val('');
+	$('.messageBox').val('').trim();
 }
 
 // show message from the firbase database
@@ -390,14 +392,10 @@ chatRef.on('child_removed', function()
 });
 
 // Operations for the game play to start the buttons and call the respective methods
-$('.weapon').on('click', function(){
-	chosenWeapon();
-});
+$('.weapon').on('click', chosenWeapon);
 
-$('#startButton').on('click', function(){
-	createNewUser();
-});
+$('#startButton').on('click',createNewUser);
 
-$('#chatButton').on('click', function(){
-	sendMessage();
-});
+
+$('#chatButton').on('click', sendMessage);
+
