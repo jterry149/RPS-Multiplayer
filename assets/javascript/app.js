@@ -179,7 +179,7 @@ turnRef.on('value', function(snapshot)
 });
 
 // show player one info when connected
-playerOneRef.on('value', function(snapshot) 
+playerOneRef.once('value', function(snapshot) 
 {
 	var name = snapshot.child('name').val();
 	var win = snapshot.child('win').val();
@@ -194,7 +194,7 @@ playerOneRef.on('value', function(snapshot)
 });
 
 // show player two info when connected
-playerTwoRef.on('value', function(snapshot) 
+playerTwoRef.once('value', function(snapshot) 
 {
     // variable references to the database
 	var name = snapshot.child('name').val();
