@@ -80,7 +80,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
-        if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
+        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
 		{
 			playerTwoRef.set({
 				name: newPlayer,
@@ -96,7 +96,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerTwoRef.onDisconnect().remove();
 		}
-        if (existingPlayers >= 2) 
+        else if (existingPlayers >= 2) 
         {
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '</p>');
 			$('.notification').html('There are already two players playing!');
