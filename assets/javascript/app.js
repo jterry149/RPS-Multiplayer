@@ -60,7 +60,7 @@ var setWeapon = function ()
 // create new players and attach there information into the respective player attributes
 var createNewUser = function () 
 {
-    var newPlayer = $('.newPlayer').val().trim();
+    var newPlayer = $('#newPlayer').val().trim();
 
     if (newPlayer) 
     {
@@ -80,7 +80,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
-        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
+        if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
 		{
 			playerTwoRef.set({
 				name: newPlayer,
@@ -96,7 +96,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerTwoRef.onDisconnect().remove();
 		}
-        else if (existingPlayers >= 2) 
+        if (existingPlayers >= 2) 
         {
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '</p>');
 			$('.notification').html('There are already two players playing!');
@@ -399,6 +399,6 @@ chatRef.on('child_removed', function()
 
 // Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
-$('.startButton').on('click',createNewUser);
-$('.chatButton').on('click', sendMessage);
+$('#startButton').on('click',createNewUser);
+$('#chatButton').on('click', sendMessage);
 
