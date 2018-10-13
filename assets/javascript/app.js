@@ -140,17 +140,19 @@ playerRef.on('child_removed', function(snapshot)
 	chatRef.remove();
 	turnRef.remove();
 
+	$('.box').css('border-color', '#cccccc');
 	$('.notification').html('');
 });
 
 turnRef.on('value', function(snapshot) 
 {
-	var turns = snapshot.val();
+	var i = snapshot.val();
 
 	// display notifications
-    if (turns === 1) 
+    if (i === 1) 
     {
-
+		$('.playerOne').css('border-color', 'teal');
+		$('.playerTwo').css('border-color', '#cccccc');
         if (localUser.id === 1) 
         {
 			$('.notification').html('It\'s your turn');
@@ -161,8 +163,10 @@ turnRef.on('value', function(snapshot)
 		}
 	}
 
-    if (turns === 2) 
+    if (i === 2) 
     {
+		$('.playerTwo').css('border-color', 'teal');
+		$('.playerOne').css('border-color', '#cccccc');
         if (localUser.id === 2) 
         {
 			$('.notification').html('It\'s your turn');
@@ -172,7 +176,7 @@ turnRef.on('value', function(snapshot)
 		}
 	}
 
-    if (turns === 3) 
+    if (i === 3) 
     {
 		// show the results and choices of the player
 		$('.oneChoice').html('<h1>' + playerOneChoice + '</h1>');
@@ -229,21 +233,21 @@ playerTwoRef.on('child_removed', function(snapshot)
 // function to store chosen weapon rock, paper, or scissors from players one and two.
 var chosenWeapon = function () 
 {
-	var chosenWeapon = $(this).data().weapon;
+	var chosenTool = $(this).data().weapon;
 
 	if (existingPlayers === 2) {
 		if ((localUser.id === 1) && (turn === 1)) {
-			playerOneChoiceRef.set(chosenWeapon);
+			playerOneChoiceRef.set(chosenTool);
 
 			$('.weaponRPS1').hide();
-			$('.oneChoice').html('<h1>' + chosenWeapon + '</h1>');
+			$('.oneChoice').html('<h1>' + chosenTool + '</h1>');
 		}
         else if ((localUser.id === 2) && (turn === 2)) 
         {
-			playerTwoChoiceRef.set(chosenWeapon);
+			playerTwoChoiceRef.set(chosenTool);
 
 			$('.weaponRPS2').hide();
-			$('.twoChoice').html('<h1>' + chosenWeapon + '</h1>');
+			$('.twoChoice').html('<h1>' + chosenTool + '</h1>');
 		}
         else 
         {

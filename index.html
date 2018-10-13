@@ -13,6 +13,7 @@
     <!--=================== CSS Stylesheet ==========================-->
     <link rel="stylesheet" href="assets/css/style.css"/>
     <!--=================== Firebase Link ===========================-->
+    <script src="https://www.gstatic.com/firebasejs/5.4.4/firebase.js"></script>
 </head>
 <body>
     <!--========= Heading =================-->
@@ -30,12 +31,6 @@
 					<button id="startButton" type="submit" class="btn btn-success">Start</button>
 				</div>
 			</div>
-	<!-- <div class="row justify-content-center playerInfo">
-		<div class="form-block">
-				<input id="newPlayer" type="text" class="form" placeholder="Type your name here">
-				<button id="startButton" type="submit" class="btn btn-primary">Start</button>
-			</div>
-    </div> -->
     <!--========= Notification Area ==============-->
 	    <div class="row justify-content-center">
 			<div class="col-md-6 notification"></div>
@@ -44,7 +39,7 @@
     <!--========== Start of Player Area =========-->
     <div class="row justify-content-center" id="playerArea">
         <!--========= Player One Area ===========-->
-		    <div class="col-md-3 playerOne">
+		    <div class="box col-md-3 playerOne">
 			    <div class="playerOneName"><h4>Waiting for Player 1</h4></div>
 			    <div class="playerOneWeapon">
                     <div class="weaponRPS1">
@@ -52,14 +47,14 @@
 					    <div class="weapon paper1" data-tool="Paper"></div>
 					    <div class="weapon scissors1" data-tool="Scissors"></div>
                     </div>
-                    <div class="OneChoice"></div>
+                    <div class="oneChoice"></div>
                 </div>
 			    <div class="playerOneStats"></div>
             </div>
     <!--========== Game Results Area ==========-->
             <div class="col-md-3 results"></div>
     <!--========== Player Two Area ==========-->
-		    <div class="col-md-3 playerTwo">
+		    <div class="box col-md-3 playerTwo">
 			    <div class="playerTwoName"><h4>Waiting for Player 2</h4></div>
 			    <div class="playerTwoWeapon">
                     <div class="weaponRPS2">
@@ -82,13 +77,10 @@
                 </div>
         </div>
     </div>  
-</div>
-    <!--==================== Script Links ================================================-->
-    <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <!--==================== Javascript Script Link ================-->
-    <script src="assets/javascript/app.js"></script>
+</div> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="assets/javascript/app.js"></script>
 </body>
 </html>
