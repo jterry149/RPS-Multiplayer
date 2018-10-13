@@ -29,7 +29,10 @@ var playerOneChoice = '';
 var playerTwoChoice = '';
 var playerOneWinName = '';
 var playerTwoWinName = '';
-var localUser = {id: [], name: ''};
+var localUser = {
+	id: [], 
+	name: ''
+};
 var score1 = 0;
 var score2 = 0;
 var turn = 1;
@@ -49,7 +52,8 @@ var setWeapon = function ()
 		$('.paper1').html(paper);
 		$('.scissors1').html(scissors);
 	}
-	else {
+	else
+	{
 		$('.rock2').html(rock);
 		$('.paper2').html(paper);
 		$('.scissors2').html(scissors);
@@ -86,6 +90,7 @@ var createNewUser = function ()
 				win: 0,
 				loss: 0
 			});
+
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
 
 			localUser.id = 2;
