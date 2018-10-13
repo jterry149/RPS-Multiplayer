@@ -13,7 +13,7 @@ body {
     margin:10px;
 }
 /*== Player 1, 2, Results, Chat Area Shared Properties ==*/
-.playerOne, .playerTwo, .results, .chatArea {
+.playerOne, .playerTwo, .results, .messageHolder {
     border: 2px solid black;    
     height: 200px;
     margin: 5px;

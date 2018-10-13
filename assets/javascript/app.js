@@ -59,7 +59,7 @@ var setWeapon = function ()
 // create new players and attach there information into the respective player attributes
 var createNewUser = function () 
 {
-    var newPlayer = $('.newPlayer').val().trim();
+    var newPlayer = $('#newPlayer').val().trim();
 
     if (newPlayer) 
     {
@@ -235,14 +235,14 @@ var chosenWeapon = function ()
 		if ((localUser.id === 1) && (turn === 1)) {
 			playerOneChoiceRef.set(chosenWeapon);
 
-			$('.playerOneChoices').hide();
+			$('.weaponRPS1').hide();
 			$('.oneChoice').html('<h1>' + chosenWeapon + '</h1>');
 		}
         else if ((localUser.id === 2) && (turn === 2)) 
         {
 			playerTwoChoiceRef.set(chosenWeapon);
 
-			$('.playerTwoChoices').hide();
+			$('.weaponRPS2').hide();
 			$('.twoChoice').html('<h1>' + chosenWeapon + '</h1>');
 		}
         else 
@@ -347,10 +347,10 @@ var newRound = function ()
 	// show the players options again for both players
     if (localUser.id === 1) 
     {
-		$('.playerOneChoices').show();
+		$('.weaponRPS1').show();
 	}
 	else {
-		$('.playerTwoChoices').show();
+		$('.weaponRPS2').show();
 	}
 
 	// clear the weapons for each player
@@ -361,20 +361,20 @@ var newRound = function ()
 // A function to send chats back and forth between players
 var sendMessage = function()
 {
-	var text = $('.messageBox').val().trim();
+	var text = $('#newMessage').val();
 	var message = localUser.name + ': ' + text;
 
     if (localUser.id === 1) 
     {
-		chatRef.push(message);
+		chatRef.push('<span class="green">' + message + '</span>');
 	}
 	
     if (localUser.id === 2) 
     {
-		chatRef.push(message);
+		chatRef.push('<span class="blue">' + message + '</span>');
 	}
 
-	$('.messageBox').val('').trim();
+	$('#newMessage').val('');
 }
 
 // show message from the firbase database
@@ -382,20 +382,17 @@ chatRef.on('child_added', function(snapshot)
 {
 	var currentMessage = snapshot.val();
 	
-	$('.chatArea').html('<p>' + currentMessage + '</p>');
+	$('.messageHolder').append('<li>' + currentMessage + '</li>');
 });
 
 // clear the chat after the players disconnected
 chatRef.on('child_removed', function() 
 {
-	$('.chatArea').html('');
+	$('.messageHolder').html('');
 });
 
 // Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
-
 $('#startButton').on('click',createNewUser);
-
-
 $('#chatButton').on('click', sendMessage);
 
