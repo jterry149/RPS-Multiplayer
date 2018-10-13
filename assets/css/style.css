@@ -13,7 +13,7 @@ body {
     margin:10px;
 }
 /*== Player 1, 2, Results, Chat Area Shared Properties ==*/
-.playerOne, .playerTwo, .results, .messageHolder {
+.playerOne, .playerTwo, .results,.messageHolder {
     border: 2px solid black;    
     height: 200px;
     margin: 5px;
@@ -21,11 +21,28 @@ body {
     opacity: 0.7;
     font-weight: bold;
 }
+.messageHolder {
+	text-align: left;
+	line-height: 3px;
+	padding: 10px 5px;
+	margin-bottom: 5px;
+}
 button {
     margin:5px;
-   
 }
 .weapon img{
     width:50px;
 }
 
+.weapon:hover {
+	cursor: pointer;
+	border-left: 3px solid teal;
+	border-right: 3px solid teal;
+}
+.red {
+	color: red;
+}
+
+.blue {
+	color: blue;
+}

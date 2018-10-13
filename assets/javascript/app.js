@@ -29,17 +29,14 @@ var playerOneChoice = '';
 var playerTwoChoice = '';
 var playerOneWinName = '';
 var playerTwoWinName = '';
-var localUser = {
-	id: [], 
-	name: ''
-};
+var localUser = {id: [], name: ''};
 var score1 = 0;
 var score2 = 0;
 var turn = 1;
 
-//============ FUNCTIONS ================//
+//============ Functions for the Area ================//
 
-// insert the photos for the chosen weapons for RPS
+// Insert the photos for the chosen weapons for Rock paper scissors game
 var setWeapon = function () 
 {
 	var rock = '<img title="Rock" src="assets/images/rock.jpg"/>';
@@ -375,7 +372,7 @@ var sendMessage = function()
 
     if (localUser.id === 1) 
     {
-		chatRef.push('<span class="green">' + message + '</span>');
+		chatRef.push('<span class="red">' + message + '</span>');
 	}
 	
     if (localUser.id === 2) 
@@ -391,7 +388,7 @@ chatRef.on('child_added', function(snapshot)
 {
 	var currentMessage = snapshot.val();
 	
-	$('.messageHolder').append('<li>' + currentMessage + '</li>');
+	$('.messageHolder').append('<p>' + currentMessage + '</p>');
 });
 
 // clear the chat after the players disconnected
