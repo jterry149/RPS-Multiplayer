@@ -1,16 +1,15 @@
 
 
-  // Initialize Firebase
-  var config = {
+// Initialize Firebase
+var config = {
     apiKey: "AIzaSyCOfFPjQyDBs4F3rpyaLoX2W6TzbWa_7qU",
     authDomain: "rps-multiplayer-e7c2f.firebaseapp.com",
     databaseURL: "https://rps-multiplayer-e7c2f.firebaseio.com",
     projectId: "rps-multiplayer-e7c2f",
     storageBucket: "rps-multiplayer-e7c2f.appspot.com",
-    messagingSenderId: "800713197043"
-  };
-  firebase.initializeApp(config);
-
+	messagingSenderId: "800713197043"
+};
+firebase.initializeApp(config);
 //====== Global Variables ========//
 
 // Database variable for the firebase database
@@ -35,7 +34,6 @@ var score2 = 0;
 var turn = 1;
 
 //============ Functions for the Area ================//
-
 // Insert the photos for the chosen weapons for Rock paper scissors game
 var setWeapon = function () 
 {
@@ -398,14 +396,10 @@ chatRef.on('child_removed', function()
 });
 
 // Operations for the game play to start the buttons and call the respective methods
-$('.weapon').on('click', function(){
-	chosenWeapon();
-});
-$('#startButton').on('click', function(){
-	createNewUser();
-});
+$('.weapon').on('click', chosenWeapon)
+;
 
-$('#chatButton').on('click', function(){
-	sendMessage();
-});
+$('#startButton').on('click', createNewUser);
+
+$('#chatButton').on('click', sendMessage);
 
