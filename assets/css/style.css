@@ -8,10 +8,6 @@ body {
     color: black;
 }
 
-/*== Player Area Main Properties ==*/
-.playerArea {
-    margin:10px;
-}
 /*== Player 1, 2, Results, Chat Area Shared Properties ==*/
 .playerOne, .playerTwo, .results,.messageHolder {
     border: 2px solid black;    

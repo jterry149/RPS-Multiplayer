@@ -6,17 +6,12 @@
     <title>RPS - Multiplayer Game</title>
     <!--=================== Meta Viewport Tag =======================-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--=================== Favicon Picture Link ====================-->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico">
     <!--=================== Bootstrap CSS Link ======================-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!--=================== CSS Stylesheet ==========================-->
-    <link rel="stylesheet" href="assets/css/style.css"/>
-    <script
-  		src="https://code.jquery.com/jquery-3.2.1.min.js"
-  		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-          crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
-    <!--=================== Favicon Picture Link ====================-->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css"/>  
 </head>
 <body>
     <!--========= Heading =================-->
@@ -31,10 +26,10 @@
 		<div class="row justify-content-center playerInfo">
             <div class="form-inline">
                 <div class ="form-group">
-                    <label for="Name">Enter Name: </label>
-                    <input type="text" class="form-control" id="newPlayer"/>  
+                    <label for="name">Enter Name: </label>
+                    <input type="text" class="form-control" id="newPlayer"> 
                 </div> 
-                    <button id="startButton" type="button" class="btn btn-primary">Start</button>
+                    <button id="startButton" type="submit" class="btn btn-primary">Start</button>
             </div>
 		</div>
     <!--========= Notification Area ==============-->
@@ -43,34 +38,34 @@
 	    </div>
 	</div>		
     <!--========== Start of Player Area =========-->
-    <div class="row justify-content-center" id="playerArea">
+    <div class="row justify-content-center">
         <!--========= Player One Area ===========-->
-		    <div class="col-md-3 box playerOne">
-			    <div class="playerOneName">Waiting for Player 1</div>
-			    <div class="playerOneWeapon">
+		    <div class="col-md-3 box player1">
+			    <div class="player1Name">Waiting for Player 1</div>
+			    <div class="player1Weapon">
                     <div class="weaponRPS1">
                         <div class="weapon rock1" data-tool="Rock"></div>
 					    <div class="weapon paper1" data-tool="Paper"></div>
 					    <div class="weapon scissors1" data-tool="Scissors"></div>
                     </div>
-                    <div class="oneChoice"></div>
+                    <div class="choice1"></div>
                 </div>
-			    <div class="playerOneStats"></div>
+			    <div class="player1Stats"></div>
             </div>
     <!--========== Game Results Area ==========-->
             <div class="box col-md-3 results"></div>
     <!--========== Player Two Area ==========-->
-		    <div class="box col-md-3 playerTwo">
-			    <div class="playerTwoName">Waiting for Player 2</div>
-			    <div class="playerTwoWeapon">
+		    <div class="box col-md-3 player2">
+			    <div class="player2Name">Waiting for Player 2</div>
+			    <div class="player2Weapon">
                     <div class="weaponRPS2">
                         <div class="weapon rock2" data-tool="Rock"></div>
 					    <div class="weapon paper2" data-tool="Paper"></div>
                         <div class="weapon scissors2" data-tool="Scissors"></div>
                     </div>
-                    <div class="twoChoice"></div>
+                    <div class="choice2"></div>
                 </div>
-			    <div class="playerTwoStats"></div>
+			    <div class="player2Stats"></div>
             </div>
     </div>
     <!--=========== Chat Area =================-->
@@ -79,19 +74,17 @@
             <div class="col-sm-12 messageHolder"></div>
                 <div class="form-inline">
                     <input id="newMessage" type="text" class="form-control col-sm-10 mr-sm-5" placeholder="New message here">
-                    <button id="chatButton" type="button" class="btn btn-primary">Chat</button>
+                    <button id="chatButton" type="submit" class="btn btn-primary">Chat</button>
                 </div>
         </div>
     </div>  
 </div> 
 <!--============== Script Tags Area ================================-->
 <!--=================== Firebase Link ===========================-->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <!--=================== Own JavaScript ===============================-->
 <script src="assets/javascript/app.js"></script>
 </body>

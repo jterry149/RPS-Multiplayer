@@ -15,10 +15,10 @@ firebase.initializeApp(config);
 // Database variable for the firebase database
 var database = firebase.database();
 var playerRef = database.ref('players');
-var playerOneRef = database.ref('players/playerOne');
-var playerOneChoiceRef = database.ref('players/playerOne/choice');
-var playerTwoRef = database.ref('players/playerTwo');
-var playerTwoChoiceRef = database.ref('players/playerTwo/choice');
+var playerOneRef = database.ref('players/1');
+var playerOneChoiceRef = database.ref('players/1/choice');
+var playerTwoRef = database.ref('players/2');
+var playerTwoChoiceRef = database.ref('players/2/choice');
 var turnRef = database.ref('turn');
 var chatRef = database.ref('chat');
 
@@ -32,6 +32,7 @@ var localUser = {id: [], name: ''};
 var score1 = 0;
 var score2 = 0;
 var turn = 1;
+
 
 //============ Functions for the Area ================//
 // Insert the photos for the chosen weapons for Rock paper scissors game
@@ -58,11 +59,11 @@ var setWeapon = function ()
 // create new players and attach there information into the respective player attributes
 var createNewUser = function () 
 {
-    var newPlayer = $('#newPlayer').val().trim();
+	var newPlayer = $('#newPlayer').val().trim();
 
     if (newPlayer) 
     {
-		if ((existingPlayers === 0) || ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('2')))) 
+		if ((existingPlayers === 0) || ((existingPlayers === 1) && (currentPlayer.hasOwnProperty('2'))))
 		{
 			playerOneRef.set({
 				name: newPlayer,
@@ -78,7 +79,7 @@ var createNewUser = function ()
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
 		}
-        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1'))) 
+        else if((existingPlayers === 1) && (currentPlayer.hasOwnProperty('1')))
 		{
 			playerTwoRef.set({
 				name: newPlayer,
@@ -151,8 +152,8 @@ turnRef.on('value', function(snapshot)
 	// display notifications
     if (i === 1) 
     {
-		$('.playerOne').css('border-color', 'teal');
-		$('.playerTwo').css('border-color', '#cccccc');
+		$('.player1').css('border-color', 'red');
+		$('.player2').css('border-color', 'black');
         if (localUser.id === 1) 
         {
 			$('.notification').html('It\'s your turn');
@@ -165,8 +166,8 @@ turnRef.on('value', function(snapshot)
 
     if (i === 2) 
     {
-		$('.playerTwo').css('border-color', 'teal');
-		$('.playerOne').css('border-color', '#cccccc');
+		$('.player1').css('border-color', 'red');
+		$('.player2').css('border-color', 'black');
         if (localUser.id === 2) 
         {
 			$('.notification').html('It\'s your turn');
@@ -179,8 +180,8 @@ turnRef.on('value', function(snapshot)
     if (i === 3) 
     {
 		// show the results and choices of the player
-		$('.oneChoice').html('<h1>' + playerOneChoice + '</h1>');
-		$('.twoChoice').html('<h1>' + playerTwoChoice + '</h1>');
+		$('.choice1').html('<h1>' + playerOneChoice + '</h1>');
+		$('.choice2').html('<h1>' + playerTwoChoice + '</h1>');
 	}
 });
 
@@ -194,8 +195,8 @@ playerOneRef.on('value', function(snapshot)
 	playerOneWinName = name;
 
 	if (name !== null) {
-		$('.playerOneName').html('<h3>' + snapshot.child('name').val() + '</h3>');
-		$('.playerOneStats').html('Wins: ' + win + ' Losses: ' + loss);
+		$('.player1Name').html('<h3>' + snapshot.child('name').val() + '</h3>');
+		$('.player1Stats').html('Wins: ' + win + ' Losses: ' + loss);
 	}
 });
 
@@ -211,23 +212,23 @@ playerTwoRef.on('value', function(snapshot)
 
     if (name !== null) 
     {
-		$('.playerTwoName').html('<h3>' + snapshot.child('name').val() + '</h3>');
-		$('.playerTwoStats').html('Wins: ' + win + ' Losses: ' + loss);
+		$('.player2Name').html('<h3>' + snapshot.child('name').val() + '</h3>');
+		$('.player2Stats').html('Wins: ' + win + ' Losses: ' + loss);
 	}
 });
 
 // clear player one reference when disconnected
 playerOneRef.on('child_removed', function(snapshot) 
 {
-	$('.playerOneName').html('Waiting for Player 1');
-	$('.playerOneStats').html('');
+	$('.player1Name').html('Waiting for Player 1');
+	$('.player1Stats').html('');
 });
 
 // clear player two reference when disconnected
 playerTwoRef.on('child_removed', function(snapshot) 
 {
-	$('.playerTwoName').html('Waiting for Player 2');
-	$('.playerTwoStats').html('');
+	$('.player2Name').html('Waiting for Player 2');
+	$('.player2Stats').html('');
 });
 
 // function to store chosen weapon rock, paper, or scissors from players one and two.
@@ -235,19 +236,21 @@ var chosenWeapon = function ()
 {
 	var chosenTool = $(this).data().weapon;
 
-	if (existingPlayers === 2) {
-		if ((localUser.id === 1) && (turn === 1)) {
+	if (existingPlayers === 2) 
+	{
+		if ((localUser.id === 1) && (turn === 1)) 
+		{
 			playerOneChoiceRef.set(chosenTool);
 
 			$('.weaponRPS1').hide();
-			$('.oneChoice').html('<h1>' + chosenTool + '</h1>');
+			$('.choice1').html('<h1>' + chosenTool + '</h1>');
 		}
         else if ((localUser.id === 2) && (turn === 2)) 
         {
 			playerTwoChoiceRef.set(chosenTool);
 
 			$('.weaponRPS2').hide();
-			$('.twoChoice').html('<h1>' + chosenTool + '</h1>');
+			$('.choice2').html('<h1>' + chosenTool + '</h1>');
 		}
         else 
         {
@@ -358,8 +361,8 @@ var newRound = function ()
 	}
 
 	// clear the weapons for each player
-	$('.oneChoice').html('');
-	$('.twoChoice').html('');
+	$('.choice1').html('');
+	$('.choice2').html('');
 }
 
 // A function to send chats back and forth between players
@@ -396,8 +399,7 @@ chatRef.on('child_removed', function()
 });
 
 // Operations for the game play to start the buttons and call the respective methods
-$('.weapon').on('click', chosenWeapon)
-;
+$('.weapon').on('click', chosenWeapon);
 
 $('#startButton').on('click', createNewUser);
 
