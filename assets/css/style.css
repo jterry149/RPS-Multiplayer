@@ -9,7 +9,7 @@ body {
 }
 
 /*== Player 1, 2, Results, Chat Area Shared Properties ==*/
-.playerOne, .playerTwo, .results,.messageHolder {
+.player1, .player2, .results,.messageHolder {
     border: 2px solid black;    
     height: 200px;
     margin: 5px;

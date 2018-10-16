@@ -38,21 +38,21 @@ var turn = 1;
 // Insert the photos for the chosen weapons for Rock paper scissors game
 var setWeapon = function () 
 {
-	var rock = '<img title="Rock" src="assets/images/rock.jpg"/>';
-	var paper = '<img title="Paper" src="assets/images/paper.jpg"/>';
-	var scissors = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
+	var rockJpg = '<img title="Rock" src="assets/images/rock.jpg"/>';
+	var paperJpg = '<img title="Paper" src="assets/images/paper.jpg"/>';
+	var scissorsJpg = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
 
     if (localUser.id === 1) 
     {
-		$('.rock1').html(rock);
-		$('.paper1').html(paper);
-		$('.scissors1').html(scissors);
+		$('.rock1').html(rockJpg);
+		$('.paper1').html(paperJpg);
+		$('.scissors1').html(scissorsJpg);
 	}
 	else
 	{
-		$('.rock2').html(rock);
-		$('.paper2').html(paper);
-		$('.scissors2').html(scissors);
+		$('.rock2').html(rockJpg);
+		$('.paper2').html(paperJpg);
+		$('.scissors2').html(scissorsJpg);
 	}
 }
 
