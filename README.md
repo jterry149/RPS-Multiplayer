@@ -55,4 +55,4 @@ During the game play the players can chat with each other while playing the game
 
 ## Demo
 
-![RPS Demo Link](https://jterry149.github.io/RPS-Multiplayer/)
+[RPS Demo Link](https://jterry149.github.io/RPS-Multiplayer/)
