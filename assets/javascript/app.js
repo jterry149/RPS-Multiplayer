@@ -372,11 +372,13 @@ var sendMessage = function()
     if (localPlayer.id === 1) 
     {
 		chatRef.push('<span class="red">' + message + '</span>');
+		playerOneRef.onDisconnect().remove();
 	}
 	
     if (localPlayer.id === 2) 
     {
 		chatRef.push('<span class="blue">' + message + '</span>');
+		playerTwoRef.onDisconnect().remove();
 	}
 
 	$('#newMessage').val('');
@@ -412,20 +414,7 @@ input.addEventListener("keyup", function(event)
   }
 });
 
-// Get the input field for the chat message
-var chatInput = document.getElementById("newMessage");
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) 
-{
-  // Cancel the default action, if needed
-  event.preventDefault();
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) 
-  {
-    // Trigger the button element with a click
-    document.getElementById("chatButton").click();
-  }
-});
+
 // Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
 

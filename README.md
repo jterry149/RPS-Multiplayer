@@ -21,3 +21,6 @@ The sole purpose of this project is to create a multi-player game using Google F
 
 ## Game Play
 
+![Home Page](assets/screenshots/)
+
+Enter your name to be assigned if your player 1 or player 2.
