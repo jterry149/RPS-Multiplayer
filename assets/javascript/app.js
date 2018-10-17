@@ -329,7 +329,7 @@ var compareChoice = function ()
 
 			turn = 3;
 
-			setTimeout(newRound, 1000 * 3);
+			setTimeout(newRound, 1000 * 5);
 		}
 	}
 }
@@ -414,6 +414,21 @@ input.addEventListener("keyup", function(event)
   }
 });
 
+// Trigger the action when the enter key is hit on the buttons
+// Get the input field
+var inputChat = document.getElementById("newMessage");
+// Execute a function when the user releases a key on the keyboard
+inputChat.addEventListener("keyup", function(event) 
+{
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) 
+  {
+    // Trigger the button element with a click
+    document.getElementById("chatButton").click();
+  }
+});
 
 // Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
