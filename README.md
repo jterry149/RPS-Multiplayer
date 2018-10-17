@@ -50,5 +50,5 @@ The results will be displayed with what weapon both players picked and what play
 
 ![Results Page](assets/screenshots/results.png)
 
-During the game play the players can chat with each other while playing the game. Each player is displayed in different color to allow for readiablity.
+During the game play the players can chat with each other while playing the game. Each player is displayed in different color text.
 ![Chat Page](assets/screenshots/chats.png)
