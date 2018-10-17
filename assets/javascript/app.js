@@ -1,5 +1,3 @@
-
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCOfFPjQyDBs4F3rpyaLoX2W6TzbWa_7qU",
@@ -9,10 +7,11 @@ var config = {
     storageBucket: "rps-multiplayer-e7c2f.appspot.com",
 	messagingSenderId: "800713197043"
 };
+
 firebase.initializeApp(config);
 //====== Global Variables ========//
 
-// Database variable for the firebase database
+// Database reference variables for the firebase database
 var database = firebase.database();
 var playerRef = database.ref('players');
 var playerOneRef = database.ref('players/1');
@@ -22,19 +21,18 @@ var playerTwoChoiceRef = database.ref('players/2/choice');
 var turnRef = database.ref('turn');
 var chatRef = database.ref('chat');
 
-// game play varibales
+//  Global game play varibales
 var existingPlayers, currentPlayer;
 var playerOneChoice = ''; 
 var playerTwoChoice = '';
 var playerOneWinName = '';
 var playerTwoWinName = '';
-var localUser = {id: [], name: ''};
+var localPlayer = {id: [], name: ''};
 var score1 = 0;
 var score2 = 0;
 var turn = 1;
 
-
-//============ Functions for the Area ================//
+//================= Game Play Functions Area ===================//
 // Insert the photos for the chosen weapons for Rock paper scissors game
 var setWeapon = function () 
 {
@@ -42,7 +40,7 @@ var setWeapon = function ()
 	var paperJpg = '<img title="Paper" src="assets/images/paper.jpg"/>';
 	var scissorsJpg = '<img title="Scissors" src="assets/images/scissors.jpeg"/>';
 
-    if (localUser.id === 1) 
+    if (localPlayer.id === 1) 
     {
 		$('.rock1').html(rockJpg);
 		$('.paper1').html(paperJpg);
@@ -73,8 +71,8 @@ var createNewUser = function ()
 
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player One</p>');
 			
-			localUser.id = 1;
-			localUser.name = newPlayer;
+			localPlayer.id = 1;
+			localPlayer.name = newPlayer;
 
 			setWeapon();
 			playerOneRef.onDisconnect().remove();
@@ -89,8 +87,8 @@ var createNewUser = function ()
 
 			$('.playerInfo').html('<p>Hi ' + newPlayer + '! You\'re Player Two</p>');
 
-			localUser.id = 2;
-			localUser.name = newPlayer;
+			localPlayer.id = 2;
+			localPlayer.name = newPlayer;
 
 			setWeapon();
 			playerTwoRef.onDisconnect().remove();
@@ -154,7 +152,7 @@ turnRef.on('value', function(snapshot)
     {
 		$('.player1').css('border-color', 'red');
 		$('.player2').css('border-color', 'black');
-        if (localUser.id === 1) 
+        if (localPlayer.id === 1) 
         {
 			$('.notification').html('It\'s your turn');
 		}
@@ -168,7 +166,7 @@ turnRef.on('value', function(snapshot)
     {
 		$('.player1').css('border-color', 'red');
 		$('.player2').css('border-color', 'black');
-        if (localUser.id === 2) 
+        if (localPlayer.id === 2) 
         {
 			$('.notification').html('It\'s your turn');
 		}
@@ -238,14 +236,14 @@ var chosenWeapon = function ()
 
 	if (existingPlayers === 2) 
 	{
-		if ((localUser.id === 1) && (turn === 1)) 
+		if ((localPlayer.id === 1) && (turn === 1)) 
 		{
 			playerOneChoiceRef.set(chosenTool);
 
 			$('.weaponRPS1').hide();
 			$('.choice1').html('<h1>' + chosenTool + '</h1>');
 		}
-        else if ((localUser.id === 2) && (turn === 2)) 
+        else if ((localPlayer.id === 2) && (turn === 2)) 
         {
 			playerTwoChoiceRef.set(chosenTool);
 
@@ -352,7 +350,7 @@ var newRound = function ()
 	turnRef.set(turn);
 
 	// show the players options again for both players
-    if (localUser.id === 1) 
+    if (localPlayer.id === 1) 
     {
 		$('.weaponRPS1').show();
 	}
@@ -369,14 +367,14 @@ var newRound = function ()
 var sendMessage = function()
 {
 	var text = $('#newMessage').val();
-	var message = localUser.name + ': ' + text;
+	var message = localPlayer.name + ': ' + text;
 
-    if (localUser.id === 1) 
+    if (localPlayer.id === 1) 
     {
 		chatRef.push('<span class="red">' + message + '</span>');
 	}
 	
-    if (localUser.id === 2) 
+    if (localPlayer.id === 2) 
     {
 		chatRef.push('<span class="blue">' + message + '</span>');
 	}
@@ -398,6 +396,36 @@ chatRef.on('child_removed', function()
 	$('.messageHolder').html('');
 });
 
+// Trigger the action when the enter key is hit on the buttons
+// Get the input field
+var input = document.getElementById("newPlayer");
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) 
+{
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) 
+  {
+    // Trigger the button element with a click
+    document.getElementById("startButton").click();
+  }
+});
+
+// Get the input field for the chat message
+var chatInput = document.getElementById("newMessage");
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) 
+{
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) 
+  {
+    // Trigger the button element with a click
+    document.getElementById("chatButton").click();
+  }
+});
 // Operations for the game play to start the buttons and call the respective methods
 $('.weapon').on('click', chosenWeapon);
 
