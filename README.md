@@ -1,6 +1,8 @@
 # RPS - Multiplayer
 
 ## Purpose 
+ 
+The sole purpose of this project is to create a multi-player game using Google Firebase.
 
 ## Technologies Used
 
@@ -10,6 +12,12 @@
 * Javascript
 * Jquery
 * Google Firebase
+
+## Future Features
+
+1. Computer AI
+2. More than one game room
+3. User login feature
 
 ## Game Play
 
