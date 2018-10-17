@@ -52,3 +52,7 @@ The results will be displayed with what weapon both players picked and what play
 
 During the game play the players can chat with each other while playing the game. Each player is displayed in different color text.
 ![Chat Page](assets/screenshots/chats.png)
+
+## Demo
+
+![RPS Demo Link](https://jterry149.github.io/RPS-Multiplayer/)
